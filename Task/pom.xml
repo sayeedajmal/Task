@@ -49,12 +49,13 @@
                                 <goal>exec</goal>
                             </goals>
                             <configuration>
-                                <executable>${java.home}/../bin/javafxpackager</executable>
                                 <mainClass>com.Task.LAUNCH</mainClass>
+                                <executable>${java.home}/../bin/javafxpackager</executable>
                                 <arguments>
                                     <argument>-createjar</argument>
                                     <argument>-nocss2bin</argument>
                                     <argument>-appclass</argument>
+                                    <arguments>mainClass</arguments>
                                     <argument>-srcdir</argument>
                                     <argument>${project.build.directory}/classes</argument>
                                     <argument>-outdir</argument>
