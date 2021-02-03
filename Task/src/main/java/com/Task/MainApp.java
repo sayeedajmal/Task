@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -15,7 +16,9 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Task.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
+        Image icon=new Image("/images/Calculator-icon.png");
+        stage.getIcons().add(icon);
+        stage.initStyle(StageStyle.DECORATED);
         stage.show();
 
     }
