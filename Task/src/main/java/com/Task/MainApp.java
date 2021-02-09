@@ -19,6 +19,8 @@ public class MainApp extends Application {
         Image icon=new Image("/images/Calculator-icon.png");
         stage.getIcons().add(icon);
         stage.initStyle(StageStyle.DECORATED);
+        stage.setResizable(false);
+        stage.centerOnScreen();
         stage.show();
 
     }
