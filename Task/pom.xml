@@ -8,119 +8,128 @@
     <name>Task</name>
 
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
-    
+    <version>1.0.0-SNAPSHOT</version>
+
     <organization>
-         <!-- Used as the 'Vendor' for JNLP generation -->
-         <name>Task</name>
-        </organization>
-    
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.6</version>
-                    <executions>
-                        <execution>
-                            <id>unpack-dependencies</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>unpack-dependencies</goal>
-                            </goals>
-                            <configuration>
-                                <excludeScope>system</excludeScope>
-                                <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>
-                                <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.2.1</version>
-                    <executions>
-                        <execution>
-                            <id>unpack-dependencies</id>
-    
-                            <phase>package</phase>
-                            <goals>
-                                <goal>exec</goal>
-                            </goals>
-                            <configuration>
-                                <mainClass>com.Task.LAUNCH</mainClass>
-                                <executable>${java.home}/../bin/javafxpackager</executable>
-                                <arguments>
-                                    <argument>-createjar</argument>
-                                    <argument>-nocss2bin</argument>
-                                    <argument>-appclass</argument>
-                                    <arguments>mainClass</arguments>
-                                    <argument>-srcdir</argument>
-                                    <argument>${project.build.directory}/classes</argument>
-                                    <argument>-outdir</argument>
-                                    <argument>${project.build.directory}</argument>
-                                    <argument>-outfile</argument>
-                                    <argument>${project.build.finalName}.jar</argument>
-                                </arguments>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>default-cli</id>
-                            <goals>
-                                <goal>exec</goal>
-                            </goals>
-                            <configuration>
-                                <executable>${java.home}/bin/java</executable>
-                                <commandlineArgs>${runfx.args}</commandlineArgs>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
-                    <configuration>
-                        <source>14</source>
-                        <target>14</target>
-                        <compilerArguments>
-                            <bootclasspath>${sun.boot.class.path}${path.separator}${java.home}/lib/jfxrt.jar</bootclasspath>
-                        </compilerArguments>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.16</version>
-                    <configuration>
-                        <additionalClasspathElements>
-                            <additionalClasspathElement>${java.home}/lib/jfxrt.jar</additionalClasspathElement>
-                        </additionalClasspathElements>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    
-    
-        <dependencies>
-    
-            <dependency>
-                <groupId>com.jfoenix</groupId>
-                <artifactId>jfoenix</artifactId>
-                <version>9.0.10</version>
-            </dependency>
-    
-    
-            <dependency>
+        <!-- Used as the 'Vendor' for JNLP generation -->
+        <name>Task</name>
+
+    </organization>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <excludeScope>system</excludeScope>
+                            <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>
+                            <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.openjfx</groupId>
-                <artifactId>javafx-controls</artifactId>
-                <version>16-ea+6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-fxml</artifactId>
-                <version>16-ea+6</version>
-            </dependency>
-        </dependencies>
-    </project>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.5</version>
+                <configuration>
+                    <mainClass>com.Task.MainApp</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.Task.MainApp</mainClass>
+                            <executable>${java.home}/../bin/javafxpackager</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <argument>-createjar</argument>
+                                <argument>-nocss2bin</argument>
+                                <argument>-appclass</argument>
+                                <arguments>mainClass</arguments>
+                                <argument>-srcdir</argument>
+                                <argument>${project.build.directory}/classes</argument>
+                                <argument>-outdir</argument>
+                                <argument>${project.build.directory}</argument>
+                                <argument>-outfile</argument>
+                                <argument>${project.build.finalName}.jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${java.home}/bin/java</executable>
+                            <commandlineArgs>${runfx.args}</commandlineArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>14</source>
+                    <target>14</target>
+                    <compilerArguments>
+                        <bootclasspath>${sun.boot.class.path}${path.separator}${java.home}/lib/jfxrt.jar</bootclasspath>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${java.home}/lib/jfxrt.jar</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>16-ea+6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>16-ea+6</version>
+        </dependency>
+    </dependencies>
+</project>
