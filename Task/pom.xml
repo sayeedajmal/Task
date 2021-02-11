@@ -42,7 +42,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>com.Task.MainApp</mainClass>
+                    <mainClass>com.Task.LAUNCH</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -57,7 +57,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.Task.MainApp</mainClass>
+                            <mainClass>com.Task.LAUNCH</mainClass>
                             <executable>${java.home}/../bin/javafxpackager</executable>
                             <arguments>
                                 <argument>-classpath</argument>

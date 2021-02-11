@@ -26,7 +26,7 @@ public class TaskController implements Initializable {
         String text = textfield.getText();
         LocalDate date = datePicker.getValue();
         if (!text.isBlank() && !date.toString().isBlank()) {
-            FileWriter file = new FileWriter("Save.txt", true);
+            FileWriter file = new FileWriter("Task/Save.txt", true);
             String insert = ">: " + datePicker.getValue() + ":    " + textfield.getText() + " .." + "\n";
             textarea.appendText(insert);
             file.append(insert);
@@ -51,20 +51,21 @@ public class TaskController implements Initializable {
 
     @FXML
     public void show() {
-        Path path = FileSystems.getDefault().getPath("Save.txt");
+        Path path = FileSystems.getDefault().getPath("Task/Save.txt");
         BufferedReader reader = null;
         try {
             reader = Files.newBufferedReader(path);
             String convert = null;
             String real = null;
             while ((convert = reader.readLine()) != null) {
-                real += convert;
+                real += convert + "\n";
                 textarea.setText(real);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

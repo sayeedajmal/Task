@@ -23,7 +23,7 @@
                 <Font name="Bitstream Vera Sans Mono Bold" size="19.0" />
             </font>
         </JFXButton>
-        <JFXTextArea fx:id="textarea" editable="false" focusColor="BLACK" layoutX="6.0" layoutY="143.0" prefHeight="354.0" prefWidth="306.0" promptText="Your Tasks" style="-fx-background-color: #D1D3FC;" unFocusColor="RED" wrapText="true">
+        <JFXTextArea fx:id="textarea" editable="false" focusColor="BLACK" layoutX="6.0" layoutY="143.0" prefHeight="354.0" prefWidth="306.0" promptText="Your Tasks" style="-fx-background-color: #D1D3FC;" styleClass="color" stylesheets="@../styles/styles.css" unFocusColor="RED" wrapText="true">
             <font>
                 <Font name="Bitstream Vera Serif Bold" size="13.0" />
             </font>
