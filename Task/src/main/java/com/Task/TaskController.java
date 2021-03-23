@@ -1,21 +1,19 @@
 package com.Task;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class TaskController implements Initializable {
+public class TaskController {
     public DatePicker datePicker;
     public TextField textfield;
     public TextArea textarea;
@@ -26,7 +24,7 @@ public class TaskController implements Initializable {
         String text = textfield.getText();
         LocalDate date = datePicker.getValue();
         if (!text.isBlank() && !date.toString().isBlank()) {
-            FileWriter file = new FileWriter("Task/Save.txt", true);
+            FileWriter file = new FileWriter("Save.txt", true);
             String insert = ">: " + datePicker.getValue() + ":    " + textfield.getText() + " .." + "\n";
             textarea.appendText(insert);
             file.append(insert);
@@ -45,17 +43,23 @@ public class TaskController implements Initializable {
 
     // For Cleaning the Task!
     @FXML
+    File main = new File("Save.txt");
+
     public void remove() {
-        textarea.setText(null);
+        if (main.exists()) {
+            main.deleteOnExit();
+            textarea.setText("\t\t Cleared !\n\t\t Please Restart Application! for New Entry");
+            empty();
+        }
     }
 
     @FXML
     public void show() {
-        Path path = FileSystems.getDefault().getPath("Task/Save.txt");
+        Path path = FileSystems.getDefault().getPath("Save.txt");
         BufferedReader reader = null;
         try {
             reader = Files.newBufferedReader(path);
-            String convert = null;
+            String convert;
             String real = null;
             while ((convert = reader.readLine()) != null) {
                 real += convert + "\n";
@@ -65,11 +69,6 @@ public class TaskController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }
