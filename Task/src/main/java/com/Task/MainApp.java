@@ -15,7 +15,7 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Task.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UTILITY);
+        stage.initStyle(StageStyle.DECORATED);
         stage.setResizable(false);
         stage.centerOnScreen();
         stage.show();

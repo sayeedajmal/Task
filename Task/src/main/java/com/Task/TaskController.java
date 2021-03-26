@@ -35,24 +35,6 @@ public class TaskController {
         }
     }
 
-    // For clearing textfield after submission of Text
-    @FXML
-    public void empty() {
-        textfield.setText(null);
-    }
-
-    // For Cleaning the Task!
-    @FXML
-    File main = new File("Save.txt");
-
-    public void remove() {
-        if (main.exists()) {
-            main.deleteOnExit();
-            textarea.setText("\t\t Cleared !\n\t\t Please Restart Application! for New Entry");
-            empty();
-        }
-    }
-
     @FXML
     public void show() {
         Path path = FileSystems.getDefault().getPath("Save.txt");
@@ -70,5 +52,23 @@ public class TaskController {
             e.printStackTrace();
         }
 
+    }
+
+    // For clearing textfield after submission of Text
+    @FXML
+    public void empty() {
+        textfield.setText(null);
+    }
+
+    // For Cleaning the Task!
+    @FXML
+    File main = new File("Save.txt");
+
+    public void remove() {
+        if (main.exists()) {
+            main.deleteOnExit();
+            textarea.setText("\t\t Cleared !\n\t\t Please Restart Application! for New Entry");
+            empty();
+        }
     }
 }

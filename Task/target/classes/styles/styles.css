@@ -1,3 +1,6 @@
 .color {
-  -fx-text-fill: rgb(20, 35, 243);
+  -fx-text-fill: #25c0b7;
+}
+.textcolor {
+  -fx-text-fill: white;
 }
