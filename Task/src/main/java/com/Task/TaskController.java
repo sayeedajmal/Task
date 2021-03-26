@@ -38,12 +38,12 @@ public class TaskController {
     @FXML
     public void show() {
         Path path = FileSystems.getDefault().getPath("Save.txt");
-        BufferedReader reader = null;
+        BufferedReader reader;
         try {
             reader = Files.newBufferedReader(path);
             String convert;
             String real = null;
-            while ((convert = reader.readLine()) != null) {
+            while ((convert = reader.readLine())==null) {
                 real += convert + "\n";
                 textarea.setText(real);
             }
